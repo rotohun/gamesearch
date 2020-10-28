@@ -14,7 +14,7 @@ const types = {
 
 const ListItem = ({ children, style}) => {
     return (
-        <View style={[ style, { backgroundColor: '#121212', flexDirection: 'row', paddingVertical: 5, paddingHorizontal: 20, justifyContent: 'space-between'}]}>
+        <View style={[{ height: 75, backgroundColor: '#121212', flexDirection: 'row', paddingVertical: 5, paddingHorizontal: 20, justifyContent: 'space-between'}, style, ]}>
             {children}
         </View>
     )
@@ -22,17 +22,30 @@ const ListItem = ({ children, style}) => {
 
 const renderEvents = (item) => {
     return (
-    <ListItem style={{ backgroundColor: '#121212', paddingVertical: 5}}>
-        <Text style={{ color: '#fff'}}>
-            {item.event.category}
-        </Text>
+    <ListItem style={{paddingVertical: 5, justifyContent: 'none',borderBottomWidth: 1, borderColor: '#000', alignItems: 'center'}}>
+        <View style={{ marginRight: 20 }}>
+            <Text style={{color: '#fff', fontWeight: 'bold'}}>
+                5/31
+            </Text>
+            <Text style={{color: '#fff', fontSize: 12, color: 'lightgrey'}}>
+                sat
+            </Text>
+        </View>
+        <View>
+            <Text style={{color: '#fff', fontWeight: 'bold'}}>
+                {item.event.name}
+            </Text>
+            <Text style={{color: '#fff', fontSize: 12, color: 'lightgrey'}}>
+                {item.venue.city}
+            </Text>
+        </View>
     </ListItem> 
     )
 }
 
 const renderPerformers = (item) => {
     return (
-        <ListItem style={{ height: 80, alignItems: 'center', borderBottomWidth: 1, borderColor: '#000',}}>
+        <ListItem style={{ alignItems: 'center', borderBottomWidth: 1, borderColor: '#000', alignItems: 'center'}}>
             <View style={{ flexDirection: "row", alignItems: 'center'}}>
                 <Image source={{ uri: item['hero_image_url']}} style={{  height: 50, width: 50, borderRadius: 100, marginRight: 10 }} />
                 <View>
@@ -44,13 +57,16 @@ const renderPerformers = (item) => {
                     </Text>
                 </View>
             </View>
+            <View>
+                <Ionicons name="ios-arrow-forward" size={24} color="white" />
+            </View>
         </ListItem>
     )
 }
 
 const renderVenues = (item) => {
     return (
-        <ListItem style={{ backgroundColor: '#121212', paddingVertical: 5, borderBottomWidth: 1, borderColor: '#000',}}>
+        <ListItem style={{borderBottomWidth: 1, borderColor: '#000', alignItems: 'center'}}>
             <View style={{ flexDirection: "row", alignItems: 'center'}}>
                 <Image source={{ uri: item['image_url']}} style={{  height: 50, width: 50, borderRadius: 100, marginRight: 10 }} />
                 <View>
@@ -61,6 +77,10 @@ const renderVenues = (item) => {
                         VENUE {item.city},{item.state}
                     </Text>
                 </View>
+
+            </View>
+            <View>
+                <Ionicons name="ios-arrow-forward" size={24} color="white" />
             </View>
         </ListItem>
     )
